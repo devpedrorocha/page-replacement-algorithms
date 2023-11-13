@@ -1,12 +1,9 @@
 
 
-# I need to make a class for implement the second chance algorithm
-
-
-class SecondChance:
-    def __init__(self):
+class SecondChanceQueue:
+    def __init__(self, max_size = 64):
         self.__items = []
-        self.second_chance = {}
+        self.max_size = max_size
 
     def enqueue(self, item: dict):
         self.__items.append(item)
@@ -29,21 +26,24 @@ class SecondChance:
     def is_first_page_referenced(self):
         return self.__items[0]['referenced']
 
+    def references_page(self, page_not_referenced):
+        for object in self.__items:
+            if page_not_referenced == object['page']:
+                self.__items[page_not_referenced]['referenced'] = True
+
+
     def send_to_end(self):
         firstPage = self.__items[0]
         firstPage['referenced'] = False
 
         self.dequeue()
-        self.__items.enqueue(firstPage)
+        self.enqueue(firstPage)
 
-    @property
     def size(self) -> int:
-        return len(self.____items)
-
-    @property
+        return len(self.__items)
+  
     def is_empty(self) -> bool:
-        return self.currentSize == 0
+        return len(self.__items) == 0
 
-    @property
     def is_full(self) -> bool:
-        return self.currentSize == 1024
+        return self.size() == self.max_size

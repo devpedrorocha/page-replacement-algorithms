@@ -1,11 +1,11 @@
 from typing import List
-from algoritms.fifo.queue import Queue
+from algorithms.fifo.queue import Queue
 
 
-def fifo(referenced_pages: List):
+def fifo(referenced_pages: List, number_of_pages: int = 64):
 
     faults = 0
-    q = Queue()
+    q = Queue(number_of_pages)
 
     for page in referenced_pages:
         if page not in q.get_items():

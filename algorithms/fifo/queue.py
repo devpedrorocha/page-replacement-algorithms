@@ -1,8 +1,9 @@
 
 
 class Queue:
-    def __init__(self):
+    def __init__(self, max_size = 64):
         self.__items = []
+        self.max_size = max_size
 
     def enqueue(self, item):
         self.__items.append(item)
@@ -10,18 +11,14 @@ class Queue:
     def dequeue(self):
         return self.__items.pop(0)
 
-    @property
     def get_items(self):
         return self.__items
 
-    @property
     def size(self):
         return len(self.__items)
 
-    @property
     def is_empty(self):
         return len(self.__items) == 0
 
-    @property
     def is_full(self):
-        return len(self.__items) == 1024
+        return len(self.__items) == self.max_size
