@@ -29,7 +29,7 @@ class SecondChanceQueue:
     def references_page(self, page_not_referenced):
         for object in self.__items:
             if page_not_referenced == object['page']:
-                self.__items[page_not_referenced]['referenced'] = True
+                object['referenced'] = True
 
 
     def send_to_end(self):
